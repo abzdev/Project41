@@ -48,27 +48,32 @@ class Game{
                  for(var plr in allPlayers){
                     
                     
-                     index = index+1;
-                     x = 500-allPlayers[plr].distance;
-                     y=500;
-                     
-                     players[index -1].x = x;
-                     players[index - 1].y = y;
-                       
-                     if(index === player.index){
-                         
-                        fill("black");
-                        textSize(25);
-                        text(allPlayers[plr].name ,x-25,y+25);
-
-                         
-                     }
+                    index = index+1;
+                    x = 500-allPlayers[plr].distance;
+                    y=500;
                     
-                     //text to display player score.
+                    players[index -1].x = x;
+                    players[index - 1].y = y;
+                    
+                    if(index === player.index){
+                        
+                    fill("black");
+                    textSize(25);
+                    text(allPlayers[plr].name ,x-25,y+25);
+
+                        
+                    }
+                
+                    textSize(30);
+                    fill('white');
+                    text("Player1 Score: " + allPlayers.player1.score, 50, 50);
+                    text("Player2 Score: " + allPlayers.player2.score, 50, 100);
+
+                    //text to display player score.
 
                      
                  
-                 }
+                }
                 
                 
                  
@@ -103,12 +108,17 @@ class Game{
                  }
                  
                   if (player.index !== null) {
-                     //fill code here, to destroy the objects. (Use the one in the class project 40)
-                     // add the condition to calculate the score. 
-                     //and use update() to update the values in the database.
-
-                     player.score =player.score+1;
-                  }
+                    //fill code here, to destroy the objects. (Use the one in the class project 40)
+                    // add the condition to calculate the score. 
+                    //and use update() to update the values in the database.
+                    for(var i = 0; i < fruitGroup.length; i++) {
+                        if(fruitGroup.get(i).isTouching(players)) {
+                            fruitGroup.get(i).destroy();
+                            player.score++;
+                            player.update()
+                        }
+                    }
+                }
                 
                   
 
